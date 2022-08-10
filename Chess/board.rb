@@ -1,4 +1,5 @@
-require_relative "piece"
+require_relative "req_files"
+
 
 class Board
 
@@ -9,11 +10,20 @@ def initialize
 end
 
 def init_pieces
-    @grid[0].map!.with_index { |space, col_idx| Piece.new(:black, @grid, [0, col_idx]) }
-    @grid[1].map!.with_index { |space, col_idx| Piece.new(:black, @grid, [1, col_idx]) }
-    # @grid[2..5]
-    @grid[6].map!.with_index { |space, col_idx| Piece.new(:white, @grid, [6, col_idx]) }
-    @grid[7].map!.with_index { |space, col_idx| Piece.new(:white, @grid, [7, col_idx]) }
+    @grid[0][0], @grid[0][7] = Rook.new(:black, @grid, [0,0]), Rook.new(:black, @grid, [0,7]) 
+    @grid[0][1], @grid[0][6] = Knight.new(:black, @grid, [0,1]), Knight.new(:black, @grid, [0,6])
+    @grid[1].map!.with_index { |space, col_idx| Pawn.new(:black, @grid, [1, col_idx]) }
+  
+    @grid[2].map! { |space| NullPiece.instance }
+    @grid[3].map! { |space| NullPiece.instance }
+    @grid[4].map! { |space| NullPiece.instance }
+    @grid[5].map! { |space| NullPiece.instance }
+
+    @grid[6].map!.with_index { |space, col_idx| Pawn.new(:white, @grid, [6, col_idx]) }
+   
+
+    @grid[7][1], @grid[7][6] = Knight.new(:white, @grid, [7,1]), Knight.new(:white, @grid, [7,6])
+    @grid[7][0], @grid[7][7] = Rook.new(:white, @grid, [7,0]), Rook.new(:white, @grid, [7,7])
 end
 
 def [](pos)

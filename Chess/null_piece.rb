@@ -1,5 +1,10 @@
+require "singleton"
+
 class NullPiece < Piece
     include Singleton
+
+    def initialize
+    end
 
     attr_reader :symbol, :color
 
@@ -8,7 +13,7 @@ class NullPiece < Piece
     end
 
     def color
-        :clear 
+        :none 
     end
 
 end

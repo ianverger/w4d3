@@ -2,6 +2,11 @@ require_relative "piece"
 
 class Pawn < Piece
 
+    def initialize(color, board, pos)
+        super
+        @at_start_row = true
+    end
+
     def symbol
         "♟️"
     end
@@ -11,9 +16,7 @@ class Pawn < Piece
     end
 
     private
-    def at_start_row?
-        true
-    end
+    
 
     def forward_dir
         if self.color == :black
@@ -28,13 +31,13 @@ class Pawn < Piece
 
         x, y = self.pos 
 
-        if at_start_row?
+        if @at_start_row
             2.times do
                 new_x = x + forward_dir
                 new_pos = [new_x, y]
                 pos_moves << new_pos
             end
-            at_start_row? = false
+            @at_start_row = false
         else
             new_x = x + forward_dir
             new_pos = [new_x, y]
