@@ -1,9 +1,15 @@
+require_relative "piece"
+require_relative "slideable"
+
 class Rook < Piece
     include Slideable
-    @@symbol = :R
+
+    def symbol
+        '♜'
+    end
 
     def move_dirs
-        horizonal_and_vertical_dirs
+        HORIZONTAL_AND_VERTICAL_DIRS
     end
 
 end

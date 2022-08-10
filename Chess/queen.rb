@@ -1,13 +1,18 @@
+require_relative "piece"
+require_relative "slideable"
+
 class Queen < Piece
     include Slideable
-    @@symbol = :Q 
+    
+    def symbol
+        '♛'
+    end
+
+    protected
 
     def move_dirs
-        
-        # (-7..7).each do |x|
-        #     x = 
-        # y transposed  
-
+        HORIZONTAL_AND_VERTICAL_DIRS
+        DIAGONAL_DIRS
     end
 
 end

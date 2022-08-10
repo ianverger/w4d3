@@ -1,3 +1,5 @@
+require_relative "board"
+
 class Piece
     attr_reader :board, :color
     attr_accessor :pos
@@ -6,9 +8,12 @@ class Piece
        @color = color
        @board = board
        @pos = pos
-
-       board.add_piece(self, pos)
     end
+
+    def inspect # p
+        "P"
+    end
+    # puts, print
 
     def pos=(val)
         row, col = pos 

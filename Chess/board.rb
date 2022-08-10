@@ -9,11 +9,11 @@ def initialize
 end
 
 def init_pieces
-    @grid[0].map! { |space| Piece.new(:black, @grid, [0, space]) }
-    @grid[1].map! { |space| Piece.new(:black, @grid, [1, space]) }
-
-    @grid[6].map! { |space| Piece.new(:white, @grid, [6, space]) }
-    @grid[7].map! { |space| Piece.new(:white, @grid, [7, space]) }
+    @grid[0].map!.with_index { |space, col_idx| Piece.new(:black, @grid, [0, col_idx]) }
+    @grid[1].map!.with_index { |space, col_idx| Piece.new(:black, @grid, [1, col_idx]) }
+    # @grid[2..5]
+    @grid[6].map!.with_index { |space, col_idx| Piece.new(:white, @grid, [6, col_idx]) }
+    @grid[7].map!.with_index { |space, col_idx| Piece.new(:white, @grid, [7, col_idx]) }
 end
 
 def [](pos)
@@ -42,7 +42,7 @@ def valid_pos?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
 end
 
-def add_piece(piece, pos)
+def add_piece(pos, piece)
     @grid[pos] = piece
 end
 

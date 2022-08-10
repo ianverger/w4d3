@@ -1,7 +1,15 @@
+require_relative "piece"
+require_relative "stepable"
+
 class Knight < Piece
     include Stepable
-    @@symbol = :Kn
 
+    def symbol
+        '♞'
+    end
+
+    protected 
+    
     def move_diffs
          [
             [1, 2], 
